@@ -25,7 +25,7 @@ class CreateUserCommandTest extends \PHPUnit_Framework_TestCase
      *
      * @dataProvider dataProviderTestParse
      */
-    public function testParse($url, array $expectedJsonAsArray)
+    public function testParse(string $url, array $expectedJsonAsArray)
     {
         $command = $this->application->find('parse');
 
@@ -48,7 +48,7 @@ class CreateUserCommandTest extends \PHPUnit_Framework_TestCase
     /**
      * @return array
      */
-    public function dataProviderTestParse()
+    public function dataProviderTestParse(): array
     {
         return [
             'google' => [

@@ -22,12 +22,14 @@ class ParseCommand extends Command
     /**
      * @inheritdoc
      */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): ?int
     {
         $output->write(
             json_encode(
                 []
             )
         );
+
+        return 0;
     }
 }
