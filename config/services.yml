@@ -1,3 +1,8 @@
 services:
     command.parse:
         class: Parser\Command\Parse
+        arguments:
+            - '@parser.php_parser'
+
+    parser.php_parser:
+        class: Parser\Parser\PhpParser
