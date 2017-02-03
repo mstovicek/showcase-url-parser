@@ -1,6 +1,9 @@
 {
     "name": "milan.stovicek/url-parser",
     "description": "URL parser",
+    "autoload": {
+        "psr-4": {"Parser\\": "src/"}
+    },
     "require": {
         "symfony/console": "^3.2"
     },
