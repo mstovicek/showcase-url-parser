@@ -19,19 +19,50 @@ class CreateUserCommandTest extends \PHPUnit_Framework_TestCase
         $this->application->add(new ParseCommand('parse'));
     }
 
-    public function testParse()
+    /**
+     * @param string $url
+     * @param array $expectedJsonAsArray
+     *
+     * @dataProvider dataProviderTestParse
+     */
+    public function testParse($url, array $expectedJsonAsArray)
     {
         $command = $this->application->find('parse');
 
         $commandTester = new CommandTester($command);
         $commandTester->execute(
             [
-                'command'  => $command->getName()
+                'command'  => $command->getName(),
+                'url' => $url,
             ]
         );
 
-        $output = $commandTester->getDisplay();
+        $this->assertEquals(
+            $expectedJsonAsArray,
+            json_decode(
+                $commandTester->getDisplay()
+            )
+        );
+    }
 
-        $this->assertEquals('output here', $output);
+    /**
+     * @return array
+     */
+    public function dataProviderTestParse()
+    {
+        return [
+            'google' => [
+                'https://www.google.com/?q=OLX&lang=de',
+                [
+                    'scheme' => 'https',
+                    'host' => 'www.google.com',
+                    'path' => '/',
+                    'arguments' => [
+                        'q' => 'OLX',
+                        'lang' => 'de'
+                    ]
+                ]
+            ]
+        ];
     }
 }
