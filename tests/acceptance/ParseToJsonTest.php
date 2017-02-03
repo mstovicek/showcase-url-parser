@@ -39,7 +39,7 @@ class ParseToJsonTest extends AcceptanceTest
         return [
             'google' => [
                 'https://www.google.com/?q=OLX&lang=de',
-                '{“scheme”:“https”,“host”:”www.google.com”,”path”:”/”,”arguments”:{“q”:”OLX”,”lang”:”de”}}',
+                '{"scheme":"https","host":"www.google.com","path":"/","arguments":{"q":"OLX","lang":"de"}}',
             ],
         ];
     }

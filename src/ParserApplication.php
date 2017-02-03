@@ -18,7 +18,7 @@ class ParserApplication extends Application
 
         $this->initContainer();
 
-        $this->add($this->container->get('commands.parse'));
+        $this->add($this->container->get('command.parse'));
     }
 
     private function initContainer()

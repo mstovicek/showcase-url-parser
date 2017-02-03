@@ -2,3 +2,4 @@
 - http://symfony.com/doc/current/components/console.html
 - https://phpunit.de/manual/6.0/en/installation.html
 - https://symfony.com/doc/current/components/dependency_injection.html
+- http://php.net/manual/en/function.json-encode.php
