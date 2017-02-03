@@ -1,0 +1,2 @@
+- http://php.net/manual/en/function.parse-url.php
+- http://symfony.com/doc/current/components/console.html
