@@ -11,6 +11,11 @@
             "Parser\\Tests\\": "tests/"
         }
     },
+    "scripts": {
+        "test": [
+            "php vendor/bin/phpunit"
+        ]
+    },
     "require": {
         "symfony/console": "^3.2"
     },
