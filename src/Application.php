@@ -3,12 +3,12 @@
 namespace Parser;
 
 use Symfony\Component\Config\FileLocator;
-use Symfony\Component\Console\Application;
+use Symfony\Component\Console\Application as SymfonyApplication;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
-class ParserApplication extends Application
+class Application extends SymfonyApplication
 {
     use ContainerAwareTrait;
 

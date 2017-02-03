@@ -2,18 +2,18 @@
 
 namespace Parser\Tests\Acceptance;
 
-use Parser\Command\Parse;
 use Symfony\Component\Console\Tester\CommandTester;
 
-class ParseInvalidUrlTest extends AcceptanceTest
+class ParseToJsonTest extends AcceptanceTestAbstract
 {
     /**
      * @param bool $isJson
      * @param string $url
+     * @param string $expectedJsonString
      *
      * @dataProvider dataProviderTestParse
      */
-    public function testParse(bool $isJson, string $url)
+    public function testParse(bool $isJson, string $url, string $expectedJsonString)
     {
         $command = $this->application->find('parse');
 
@@ -27,11 +27,11 @@ class ParseInvalidUrlTest extends AcceptanceTest
         );
 
         $this->assertEquals(
-            sprintf('URL (%s) is not valid', $url),
+            $expectedJsonString,
             $commandTester->getDisplay()
         );
 
-        $this->assertEquals(1, $returnCode);
+        $this->assertEquals(0, $returnCode);
     }
 
     /**
@@ -42,11 +42,21 @@ class ParseInvalidUrlTest extends AcceptanceTest
         return [
             'json' => [
                 true,
-                'http://?',
+                'https://www.google.com/?q=OLX&lang=de',
+                '{"scheme":"https","host":"www.google.com","path":"/","arguments":{"q":"OLX","lang":"de"}}',
             ],
             'human' => [
                 false,
-                'http://?',
+                'https://www.google.com/?q=OLX&lang=de',
+                <<<EOT
+scheme: https
+host: www.google.com
+path: /
+arguments:
+	q = OLX
+	lang = de
+EOT
+                ,
             ],
         ];
     }

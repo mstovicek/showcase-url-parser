@@ -4,7 +4,7 @@ namespace Parser\Tests\Acceptance;
 
 use Symfony\Component\Console\Tester\CommandTester;
 
-class ParsePartialUrlTest extends AcceptanceTest
+class ParsePartialUrlTest extends AcceptanceTestAbstract
 {
     /**
      * @param bool $isJson
