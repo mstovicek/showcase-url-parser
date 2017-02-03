@@ -4,15 +4,16 @@ namespace Parser\Tests\Acceptance;
 
 use Symfony\Component\Console\Tester\CommandTester;
 
-class ParseToStringTest extends AcceptanceTest
+class ParsePartialUrlTest extends AcceptanceTest
 {
     /**
+     * @param bool $isJson
      * @param string $url
      * @param string $expectedJsonString
      *
      * @dataProvider dataProviderTestParse
      */
-    public function testParse(string $url, string $expectedJsonString)
+    public function testParse(bool $isJson, string $url, string $expectedJsonString)
     {
         $command = $this->application->find('parse');
 
@@ -21,6 +22,7 @@ class ParseToStringTest extends AcceptanceTest
             [
                 'command'  => $command->getName(),
                 'url' => $url,
+                '--json' => $isJson,
             ]
         );
 
@@ -38,15 +40,32 @@ class ParseToStringTest extends AcceptanceTest
     public function dataProviderTestParse(): array
     {
         return [
-            'google' => [
-                'https://www.google.com/?q=OLX&lang=de',
+            'json' => [
+                true,
+                '/www.google.com/?q=OLX&lang=de',
+                '{"path":"/www.google.com/","arguments":{"q":"OLX","lang":"de"}}',
+            ],
+            'human' => [
+                false,
+                '/www.google.com/?q=OLX&lang=de',
                 <<<EOT
-scheme: https
-host: www.google.com
-path: /
+path: /www.google.com/
 arguments:
 	q = OLX
 	lang = de
+EOT
+                ,
+            ],
+            'json without arguments' => [
+                true,
+                '/www.google.com/',
+                '{"path":"/www.google.com/"}',
+            ],
+            'human without arguments' => [
+                false,
+                '/www.google.com/',
+                <<<EOT
+path: /www.google.com/
 EOT
                 ,
             ],
