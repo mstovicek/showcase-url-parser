@@ -9,6 +9,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Output\ConsoleOutputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class Parse extends Command
@@ -64,13 +65,22 @@ class Parse extends Command
 
             return static::RETURN_CODE_OK;
         } catch (InvalidUrlException $e) {
-            $output->write($e->getMessage());
+            static::getErrorOutput($output)->write($e->getMessage());
 
             return static::RETURN_CODE_FAIL;
         } catch (\Exception $e) {
-            $output->write('Unexpected exception: ' . $e->getMessage());
+            static::getErrorOutput($output)->write('Unexpected exception: ' . $e->getMessage());
 
             return static::RETURN_CODE_FAIL;
         }
+    }
+
+    /**
+     * @param OutputInterface $output
+     * @return OutputInterface
+     */
+    private static function getErrorOutput(OutputInterface $output) : OutputInterface
+    {
+        return $output instanceof ConsoleOutputInterface ? $output->getErrorOutput() : $output;
     }
 }

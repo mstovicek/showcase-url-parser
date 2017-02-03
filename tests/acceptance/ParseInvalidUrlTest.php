@@ -2,6 +2,7 @@
 
 namespace Parser\Tests\Acceptance;
 
+use Parser\Command\Parse;
 use Symfony\Component\Console\Tester\CommandTester;
 
 class ParseInvalidUrlTest extends AcceptanceTest
@@ -23,6 +24,11 @@ class ParseInvalidUrlTest extends AcceptanceTest
                 'url' => $url,
                 '--json' => $isJson,
             ]
+        );
+
+        $this->assertEquals(
+            sprintf('URL (%s) is not valid', $url),
+            $commandTester->getDisplay()
         );
 
         $this->assertEquals(1, $returnCode);

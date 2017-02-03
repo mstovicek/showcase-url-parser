@@ -5,3 +5,4 @@
 - http://php.net/manual/en/function.json-encode.php
 - http://php.net/manual/en/function.parse-str.php
 - http://stackoverflow.com/questions/25513361/how-can-i-use-array-map-with-keys-and-values-but-return-an-array-with-the-same
+- https://gist.github.com/MattKetmo/3665488
