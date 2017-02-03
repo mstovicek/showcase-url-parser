@@ -40,7 +40,7 @@ class Parse extends CommandAbstract
 
         $this->addArgument(static::ARG_URL, InputArgument::REQUIRED, 'URL to be parsed.');
 
-        $this->addOption(static::OPT_JSON, null, InputOption::VALUE_OPTIONAL, 'Whether to output json', false);
+        $this->addOption(static::OPT_JSON, null, InputOption::VALUE_NONE, 'Whether to output json');
     }
 
     /**
