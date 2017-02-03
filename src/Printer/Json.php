@@ -15,9 +15,9 @@ class Json implements PrinterInterface
         return json_encode(
             array_filter(
                 array_merge(
-                    $this->getSchemeArray($url->getScheme()),
-                    $this->getHostArray($url->getHost()),
-                    $this->getPathArray($url->getPath()),
+                    $this->getFieldArray('scheme', $url->getScheme()),
+                    $this->getFieldArray('host', $url->getHost()),
+                    $this->getFieldArray('path', $url->getPath()),
                     $this->getArgumentsArray($url->getArguments())
                 )
             ),
@@ -26,42 +26,17 @@ class Json implements PrinterInterface
     }
 
     /**
-     * @param null|string $scheme
+     * @param string $key
+     * @param null|string $value
      * @return array
      */
-    private function getSchemeArray(? string $scheme) : array
+    private function getFieldArray(string $key, ? string $value) : array
     {
-        if ($scheme === null) {
+        if ($value === null) {
             return [];
         }
 
-        return ['scheme' => $scheme];
-    }
-
-    /**
-     * @param null|string $host
-     * @return array
-     */
-    private function getHostArray(? string $host) : array
-    {
-        if ($host === null) {
-            return [];
-        }
-
-        return ['host' => $host];
-    }
-
-    /**
-     * @param null|string $path
-     * @return array
-     */
-    private function getPathArray(? string $path) : array
-    {
-        if ($path === null) {
-            return [];
-        }
-
-        return ['path' => $path];
+        return [$key => $value];
     }
 
     /**

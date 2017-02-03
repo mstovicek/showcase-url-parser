@@ -17,9 +17,9 @@ class Human implements PrinterInterface
             PHP_EOL,
             array_filter(
                 [
-                    $this->getSchemeRow($url->getScheme()),
-                    $this->getHostRow($url->getHost()),
-                    $this->getPathRow($url->getPath()),
+                    $this->getRow('scheme', $url->getScheme()),
+                    $this->getRow('host', $url->getHost()),
+                    $this->getRow('path', $url->getPath()),
                     $this->getArgumentsRows($url->getArguments()),
                 ]
             )
@@ -27,39 +27,16 @@ class Human implements PrinterInterface
     }
 
     /**
-     * @param null|string $scheme
+     * @param string $title
+     * @param null|string $value
      * @return null|string
      */
-    private function getSchemeRow(?string $scheme): ?string
+    private function getRow(string $title, ?string $value): ?string
     {
-        if ($scheme === null) {
+        if ($value === null) {
             return null;
         }
-        return sprintf('scheme: %s', $scheme);
-    }
-
-    /**
-     * @param null|string $host
-     * @return null|string
-     */
-    private function getHostRow(?string $host): ?string
-    {
-        if ($host === null) {
-            return null;
-        }
-        return sprintf('host: %s', $host);
-    }
-
-    /**
-     * @param null|string $path
-     * @return null|string
-     */
-    private function getPathRow(?string $path): ?string
-    {
-        if ($path === null) {
-            return null;
-        }
-        return sprintf('path: %s', $path);
+        return sprintf('%s: %s', $title, $value);
     }
 
     /**
