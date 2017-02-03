@@ -5,23 +5,18 @@ namespace Parser\Command;
 use Parser\Exception\InvalidUrlException;
 use Parser\Parser\UrlParserInterface;
 use Parser\Printer\PrinterFactory;
-use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
-use Symfony\Component\Console\Output\ConsoleOutputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class Parse extends Command
+class Parse extends CommandAbstract
 {
     const NAME = 'parse';
 
     const ARG_URL = 'url';
 
     const OPT_JSON = 'json';
-
-    const RETURN_CODE_OK = 0;
-    const RETURN_CODE_FAIL = 1;
 
     /** @var UrlParserInterface */
     private $urlParser;
@@ -73,14 +68,5 @@ class Parse extends Command
 
             return static::RETURN_CODE_FAIL;
         }
-    }
-
-    /**
-     * @param OutputInterface $output
-     * @return OutputInterface
-     */
-    private static function getErrorOutput(OutputInterface $output) : OutputInterface
-    {
-        return $output instanceof ConsoleOutputInterface ? $output->getErrorOutput() : $output;
     }
 }
