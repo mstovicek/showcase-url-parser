@@ -34,6 +34,7 @@ class CreateUserCommandTest extends \PHPUnit_Framework_TestCase
             [
                 'command'  => $command->getName(),
                 'url' => $url,
+                '--json' => true,
             ]
         );
 
