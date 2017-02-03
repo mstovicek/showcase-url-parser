@@ -1,6 +1,6 @@
 <?php
 
-namespace Parser;
+namespace Parser\Command;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -8,7 +8,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class ParseCommand extends Command
+class Parse extends Command
 {
     const ARG_URL = 'url';
 
@@ -19,6 +19,7 @@ class ParseCommand extends Command
      */
     protected function configure()
     {
+        $this->setName('parse');
         $this->setDescription('Parses URL');
 
         $this->addArgument(static::ARG_URL, InputArgument::REQUIRED, 'URL to be parsed.');

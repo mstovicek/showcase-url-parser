@@ -1,0 +1,3 @@
+services:
+    commands.parse:
+        class: Parser\Command\Parse

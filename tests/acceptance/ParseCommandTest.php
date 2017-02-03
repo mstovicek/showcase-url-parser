@@ -2,7 +2,7 @@
 
 namespace Parser\Tests\Acceptance;
 
-use Parser\ParseCommand;
+use Parser\ParserApplication;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Tester\CommandTester;
 
@@ -16,8 +16,7 @@ class CreateUserCommandTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $this->application = new Application();
-        $this->application->add(new ParseCommand('parse'));
+        $this->application = new ParserApplication();
     }
 
     /**
