@@ -1,0 +1,13 @@
+{
+    "name": "milan.stovicek/url-parser",
+    "description": "URL parser",
+    "require": {
+        "symfony/console": "^3.2"
+    },
+    "authors": [
+        {
+            "name": "Milan Stovicek",
+            "email": "stovicek.milan@gmail.com"
+        }
+    ]
+}
