@@ -2,10 +2,23 @@
     "name": "milan.stovicek/url-parser",
     "description": "URL parser",
     "autoload": {
-        "psr-4": {"Parser\\": "src/"}
+        "psr-4": {
+            "Parser\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-0": {
+            "Parser\\Tests\\": "tests/"
+        }
     },
     "require": {
         "symfony/console": "^3.2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^4.0"
+    },
+    "config": {
+        "bin-dir": "vendor/bin"
     },
     "authors": [
         {
