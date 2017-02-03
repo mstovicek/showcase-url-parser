@@ -1,0 +1,8 @@
+#!/bin/sh
+
+if `git rev-parse --show-toplevel`/vendor/bin/php-cs-fixer fix | grep -q "1) "
+then
+    echo "PHP-CS-Fixer found some coding standard errors and fixed all for you, please review changes, add and commit again!"
+    echo "------------------------------------------------------------------------------------------------------------------"
+    exit 1
+fi

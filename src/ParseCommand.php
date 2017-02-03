@@ -1,4 +1,5 @@
 <?php
+
 namespace Parser;
 
 use Symfony\Component\Console\Command\Command;
@@ -23,13 +24,12 @@ class ParseCommand extends Command
         $this->addArgument(static::ARG_URL, InputArgument::REQUIRED, 'URL to be parsed.');
 
         $this->addOption(static::OPT_JSON, null, InputOption::VALUE_OPTIONAL, 'Whether to output json', false);
-
     }
 
     /**
      * @inheritdoc
      */
-    protected function execute(InputInterface $input, OutputInterface $output): ?int
+    protected function execute(InputInterface $input, OutputInterface $output): ? int
     {
         $isJson = $input->getOption(static::OPT_JSON);
         $url = $input->getArgument(static::ARG_URL);

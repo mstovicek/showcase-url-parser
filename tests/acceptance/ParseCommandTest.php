@@ -1,4 +1,5 @@
 <?php
+
 namespace Parser\Tests\Acceptance;
 
 use Parser\ParseCommand;
@@ -60,10 +61,10 @@ class CreateUserCommandTest extends \PHPUnit_Framework_TestCase
                     'path' => '/',
                     'arguments' => [
                         'q' => 'OLX',
-                        'lang' => 'de'
-                    ]
-                ]
-            ]
+                        'lang' => 'de',
+                    ],
+                ],
+            ],
         ];
     }
 }
