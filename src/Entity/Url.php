@@ -4,25 +4,25 @@ namespace Parser\Entity;
 
 class Url
 {
-    /** @var string */
+    /** @var string|null */
     private $scheme;
 
-    /** @var string */
+    /** @var string|null */
     private $host;
 
-    /** @var string */
+    /** @var string|null */
     private $path;
 
-    /** @var Argument[] */
+    /** @var Argument[]|null */
     private $arguments;
 
     /**
-     * @param string $scheme
-     * @param string $host
-     * @param string $path
-     * @param Argument[] $arguments
+     * @param string|null $scheme
+     * @param string|null $host
+     * @param string|null $path
+     * @param Argument[]|null $arguments
      */
-    public function __construct(string $scheme, string $host, string $path, array $arguments)
+    public function __construct(? string $scheme, ? string $host, ? string $path, ? array $arguments)
     {
         $this->scheme = $scheme;
         $this->host = $host;
@@ -31,33 +31,33 @@ class Url
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getScheme(): string
+    public function getScheme() : ? string
     {
         return $this->scheme;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getHost(): string
+    public function getHost() : ? string
     {
         return $this->host;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getPath(): string
+    public function getPath() : ? string
     {
         return $this->path;
     }
 
     /**
-     * @return Argument[]
+     * @return Argument[]|null
      */
-    public function getArguments(): array
+    public function getArguments() : ? array
     {
         return $this->arguments;
     }

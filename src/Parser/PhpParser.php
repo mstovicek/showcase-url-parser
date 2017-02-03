@@ -16,19 +16,23 @@ class PhpParser implements UrlParserInterface
         $parsed = parse_url($url);
 
         return new Url(
-            $parsed['scheme'],
-            $parsed['host'],
-            $parsed['path'],
-            $this->parseArguments($parsed['query'])
+            $parsed['scheme'] ?? null,
+            $parsed['host'] ?? null,
+            $parsed['path'] ?? null,
+            $this->parseArguments($parsed['query'] ?? null)
         );
     }
 
     /**
-     * @param string $query
+     * @param string|null $query
      * @return Argument[]
      */
-    private function parseArguments(string $query): array
+    private function parseArguments(? string $query) : array
     {
+        if ($query === null) {
+            return [];
+        }
+
         parse_str($query, $output);
 
         return array_map(

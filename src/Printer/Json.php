@@ -13,27 +13,72 @@ class Json implements PrinterInterface
     public function print(Url $url): string
     {
         return json_encode(
-            [
-                'scheme' => $url->getScheme(),
-                'host' => $url->getHost(),
-                'path' => $url->getPath(),
-                'arguments' => $this->printArguments($url->getArguments()),
-            ],
+            array_filter(
+                array_merge(
+                    $this->getSchemeArray($url->getScheme()),
+                    $this->getHostArray($url->getHost()),
+                    $this->getPathArray($url->getPath()),
+                    $this->getArgumentsArray($url->getArguments())
+                )
+            ),
             JSON_UNESCAPED_SLASHES
         );
     }
 
     /**
-     * @param array $arguments
+     * @param null|string $scheme
      * @return array
      */
-    private function printArguments(array $arguments): array
+    private function getSchemeArray(? string $scheme) : array
     {
+        if ($scheme === null) {
+            return [];
+        }
+
+        return ['scheme' => $scheme];
+    }
+
+    /**
+     * @param null|string $host
+     * @return array
+     */
+    private function getHostArray(? string $host) : array
+    {
+        if ($host === null) {
+            return [];
+        }
+
+        return ['host' => $host];
+    }
+
+    /**
+     * @param null|string $path
+     * @return array
+     */
+    private function getPathArray(? string $path) : array
+    {
+        if ($path === null) {
+            return [];
+        }
+
+        return ['path' => $path];
+    }
+
+    /**
+     * @param array|null $arguments
+     * @return array
+     */
+    private function getArgumentsArray(? array $arguments) : array
+    {
+        if ($arguments === null) {
+            return [];
+        }
+
         $output = [];
         foreach ($arguments as $argument) {
             $output[$argument->getName()] = $argument->getValue();
         }
 
-        return $output;
+        return ['arguments' => $output];
     }
 }
