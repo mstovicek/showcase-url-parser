@@ -17,7 +17,7 @@ class ParseToJsonTest extends AcceptanceTest
         $command = $this->application->find('parse');
 
         $commandTester = new CommandTester($command);
-        $commandTester->execute(
+        $returnCode = $commandTester->execute(
             [
                 'command'  => $command->getName(),
                 'url' => $url,
@@ -29,6 +29,8 @@ class ParseToJsonTest extends AcceptanceTest
             $expectedJsonString,
             $commandTester->getDisplay()
         );
+
+        $this->assertEquals(0, $returnCode);
     }
 
     /**
