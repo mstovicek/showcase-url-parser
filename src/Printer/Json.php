@@ -15,10 +15,10 @@ class Json implements PrinterInterface
         return json_encode(
             array_filter(
                 array_merge(
-                    $this->getFieldArray('scheme', $url->getScheme()),
-                    $this->getFieldArray('host', $url->getHost()),
-                    $this->getFieldArray('path', $url->getPath()),
-                    $this->getArgumentsArray($url->getArguments())
+                    $this->getFieldArray(static::TITLE_SCHEME, $url->getScheme()),
+                    $this->getFieldArray(static::TITLE_HOST, $url->getHost()),
+                    $this->getFieldArray(static::TITLE_PATH, $url->getPath()),
+                    $this->getArgumentsArray(static::TITLE_ARGUMENTS, $url->getArguments())
                 )
             ),
             JSON_UNESCAPED_SLASHES
@@ -40,10 +40,11 @@ class Json implements PrinterInterface
     }
 
     /**
+     * @param string $key
      * @param array|null $arguments
      * @return array
      */
-    private function getArgumentsArray(? array $arguments) : array
+    private function getArgumentsArray(string $key, ? array $arguments) : array
     {
         if ($arguments === null) {
             return [];
@@ -54,6 +55,6 @@ class Json implements PrinterInterface
             $output[$argument->getName()] = $argument->getValue();
         }
 
-        return ['arguments' => $output];
+        return [$key => $output];
     }
 }

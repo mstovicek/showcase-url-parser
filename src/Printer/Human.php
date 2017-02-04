@@ -17,10 +17,10 @@ class Human implements PrinterInterface
             PHP_EOL,
             array_filter(
                 [
-                    $this->getRow('scheme', $url->getScheme()),
-                    $this->getRow('host', $url->getHost()),
-                    $this->getRow('path', $url->getPath()),
-                    $this->getArgumentsRows($url->getArguments()),
+                    $this->getRow(static::TITLE_SCHEME, $url->getScheme()),
+                    $this->getRow(static::TITLE_HOST, $url->getHost()),
+                    $this->getRow(static::TITLE_PATH, $url->getPath()),
+                    $this->getArgumentsRows(static::TITLE_ARGUMENTS, $url->getArguments()),
                 ]
             )
         );
@@ -41,16 +41,17 @@ class Human implements PrinterInterface
     }
 
     /**
+     * @param string $title
      * @param Argument[] $arguments
-     * @return string|null
+     * @return null|string
      */
-    private function getArgumentsRows($arguments) : ? string
+    private function getArgumentsRows(string $title, array $arguments) : ? string
     {
         if (empty($arguments)) {
             return null;
         }
 
-        $output = 'arguments:';
+        $output = $title . ':';
 
         foreach ($arguments as $argument) {
             $output .= <<<EOT
