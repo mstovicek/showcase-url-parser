@@ -6,6 +6,7 @@ use Parser\Command\CommandAbstract;
 use Parser\Command\Parse;
 use Parser\Entity\Url;
 use Parser\Exception\InvalidUrlException;
+use Parser\Parser\ParserFactory;
 use Parser\Parser\UrlParserInterface;
 use Parser\Printer\PrinterFactory;
 use Parser\Printer\PrinterInterface;
@@ -24,7 +25,7 @@ class ParseTest extends TestCase
     public function testReturnValue(bool $parserThrowsException, int $expectedReturnValue)
     {
         $parseCommand = new Parse(
-            $this->getUrlParserMock($parserThrowsException),
+            $this->getParserFactoryMock($parserThrowsException),
             $this->getPrinterFactoryMock()
         );
         $returnValue = $parseCommand->run(
@@ -74,6 +75,24 @@ class ParseTest extends TestCase
             );
 
         return $mock;
+    }
+
+    /**
+     * @param bool $throwException
+     * @return ParserFactory
+     */
+    private function getParserFactoryMock(bool $throwException): ParserFactory
+    {
+        /** @var \PHPUnit_Framework_MockObject_MockBuilder|ParserFactory $factoryMock */
+        $factoryMock = $this->getMockBuilder(ParserFactory::class)
+            ->disableOriginalConstructor()
+            ->setMethods(['getParser'])
+            ->getMock();
+
+        $factoryMock->method('getParser')
+            ->willReturn($this->getUrlParserMock($throwException));
+
+        return $factoryMock;
     }
 
     /**

@@ -2,11 +2,21 @@ services:
     command.parse:
         class: Parser\Command\Parse
         arguments:
-            - '@parser.php_parser'
+            - '@parser.parser_factory'
             - '@printer.printer_factory'
+
+    parser.parser_factory:
+        class: Parser\Parser\ParserFactory
+        arguments:
+            - '@parser.php_parser'
+            - '@parser.regex_parser'
 
     parser.php_parser:
         class: Parser\Parser\PhpParser
+        public: false
+
+    parser.regex_parser:
+        class: Parser\Parser\RegexParser
         public: false
 
     printer.printer_factory:

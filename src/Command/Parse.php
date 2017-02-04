@@ -3,7 +3,7 @@
 namespace Parser\Command;
 
 use Parser\Exception\InvalidUrlException;
-use Parser\Parser\UrlParserInterface;
+use Parser\Parser\ParserFactory;
 use Parser\Printer\PrinterFactory;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -19,22 +19,22 @@ class Parse extends CommandAbstract
     const OPT_JSON = 'json';
     const OPT_PARSER = 'parser';
 
-    /** @var UrlParserInterface */
-    private $urlParser;
+    /** @var ParserFactory */
+    private $parserFactory;
 
     /** @var PrinterFactory */
     private $printerFactory;
 
     /**
-     * @param UrlParserInterface $urlParser
+     * @param ParserFactory $parserFactory
      * @param PrinterFactory $printerFactory
      */
-    public function __construct(UrlParserInterface $urlParser, PrinterFactory $printerFactory)
+    public function __construct(ParserFactory $parserFactory, PrinterFactory $printerFactory)
     {
         parent::__construct(static::NAME);
 
-        $this->urlParser = $urlParser;
         $this->printerFactory = $printerFactory;
+        $this->parserFactory = $parserFactory;
     }
 
     /**
@@ -61,7 +61,7 @@ class Parse extends CommandAbstract
         $url = $input->getArgument(static::ARG_URL);
 
         try {
-            $urlEntity = $this->urlParser->parse($url);
+            $urlEntity = $this->parserFactory->getParser($parserType)->parse($url);
 
             $output->write(
                 $this->printerFactory->getPrinter($isJson)->print(
