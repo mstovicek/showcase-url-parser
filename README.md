@@ -56,15 +56,18 @@ $ composer install
 $ php application.php parse [options] <url>
 
 Arguments:
-    url     URL to be parsed.
+    url                URL to be parsed.
 
 Options:
-    --json  Whether to output json
+    --json             Whether to output json
+    --parser[=PARSER]  Parser type to be used: php | regex [default: "php"]
 ```
 
 ```
 $ php application.php parse "https://www.google.com/?q=Czechia&lang=de"
 $ php application.php parse --json "https://www.google.com/?q=Czechia&lang=de"
+$ php application.php parse --parser=regex "https://www.google.com/?q=Czechia&lang=de"
+$ php application.php parse --json --parser=php "https://www.google.com/?q=Czechia&lang=de"
 ```
 
 ### Run tests
