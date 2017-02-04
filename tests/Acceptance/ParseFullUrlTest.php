@@ -58,6 +58,11 @@ arguments:
 EOT
                 ,
             ],
+            'json with space' => [
+                true,
+                'https://www.google.com/?q=O+L+X&lang=de',
+                '{"scheme":"https","host":"www.google.com","path":"/","arguments":{"q":"O L X","lang":"de"}}',
+            ],
         ];
     }
 }

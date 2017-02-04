@@ -9,3 +9,4 @@
 - https://phpunit.de/manual/current/en/appendixes.annotations.html
 - https://regex101.com/
 - https://github.com/sebastianbergmann/phpunit/issues/1785
+- http://apigen.juzna.cz/doc/sebastianbergmann/phpunit/function-assertJson.html
