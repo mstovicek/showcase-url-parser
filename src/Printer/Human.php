@@ -31,11 +31,12 @@ class Human implements PrinterInterface
      * @param null|string $value
      * @return null|string
      */
-    private function getRow(string $title, ?string $value): ?string
+    private function getRow(string $title, ? string $value) : ? string
     {
         if ($value === null) {
             return null;
         }
+
         return sprintf('%s: %s', $title, $value);
     }
 
@@ -43,7 +44,7 @@ class Human implements PrinterInterface
      * @param Argument[] $arguments
      * @return string|null
      */
-    private function getArgumentsRows($arguments): ?string
+    private function getArgumentsRows($arguments) : ? string
     {
         if (empty($arguments)) {
             return null;
