@@ -12,7 +12,7 @@ Your solution should meet the following criteria:
 ### Examples
 
 ```sh
-$ php parser.php “https://www.google.com/?q=Czechia&lang=de”
+$ php parser.php "https://www.google.com/?q=Czechia&lang=de"
 scheme: https
 host: www.google.com
 path: /
@@ -24,21 +24,21 @@ $ echo $?
 ```
 
 ```sh
-$ php parser.php --json “https://www.google.com/?q=Czechia&lang=de”
-{“scheme”:“https”,“host”:”www.google.com”,”path”:”/”,”arguments”:{“q”:”Czechia”,”lang”:”de”}}
+$ php parser.php --json "https://www.google.com/?q=Czechia&lang=de"
+{"scheme":"https","host":"www.google.com","path":"/","arguments":{"q":"Czechia","lang":"de"}}
 $ echo $?
 0
 ```
 
 ```sh
-$ php parser.php --json “/www.google.com/?q=Czechia&lang=de”
-{“path”:”/www.google.com/”,”arguments”:{“q”:”Czechia”,”lang”:”de”}}
+$ php parser.php --json "/www.google.com/?q=Czechia&lang=de"
+{"path":"/www.google.com/","arguments":{"q":"Czechia","lang":"de"}}
 $ echo $?
 0
 ```
 
 ```sh
-$ php parser.php --json “http://?”
+$ php parser.php --json "http://?"
 Incorrect URL.
 $ echo $?
 1
