@@ -32,30 +32,40 @@ class HumanTest extends AbstractTestPrinter
     public function dataProviderTestPrint() : array
     {
         return [
-            [
+            'basic' => [
                 'scheme',
                 'host',
                 'path',
                 [
                     'arg' => 'u m e n t',
                 ],
-                '{"scheme":"scheme","host":"host","path":"path","arguments":{"arg":"u m e n t"}}',
+                <<<EOT
+scheme: scheme
+host: host
+path: path
+arguments:
+	arg = u m e n t
+EOT
             ],
-            [
+            'nulls' => [
                 null,
                 null,
                 null,
                 null,
-                '{}',
+                '',
             ],
-            [
+            'empty' => [
                 '',
                 '',
                 '',
                 [],
-                '{}',
+                <<<EOT
+scheme: 
+host: 
+path: 
+EOT
             ],
-            [
+            'arguments' => [
                 'scheme',
                 '',
                 'path',
@@ -64,7 +74,15 @@ class HumanTest extends AbstractTestPrinter
                     'b' => 'B',
                     'c' => 'C',
                 ],
-                '{"scheme":"scheme","path":"path","arguments":{"a":"A","b":"B","c":"C"}}',
+                <<<EOT
+scheme: scheme
+host: 
+path: path
+arguments:
+	a = A
+	b = B
+	c = C
+EOT
             ],
         ];
     }
