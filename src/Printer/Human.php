@@ -42,10 +42,10 @@ class Human implements PrinterInterface
 
     /**
      * @param string $title
-     * @param Argument[] $arguments
+     * @param Argument[]|null $arguments
      * @return null|string
      */
-    private function getArgumentsRows(string $title, array $arguments) : ? string
+    private function getArgumentsRows(string $title, ? array $arguments) : ? string
     {
         if (empty($arguments)) {
             return null;
