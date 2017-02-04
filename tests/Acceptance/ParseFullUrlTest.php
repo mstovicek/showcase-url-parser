@@ -42,26 +42,26 @@ class ParseToJsonTest extends AcceptanceTestAbstract
         return [
             'json' => [
                 true,
-                'https://www.google.com/?q=OLX&lang=de',
-                '{"scheme":"https","host":"www.google.com","path":"/","arguments":{"q":"OLX","lang":"de"}}',
+                'https://www.google.com/?q=Czechia&lang=de',
+                '{"scheme":"https","host":"www.google.com","path":"/","arguments":{"q":"Czechia","lang":"de"}}',
             ],
             'human' => [
                 false,
-                'https://www.google.com/?q=OLX&lang=de',
+                'https://www.google.com/?q=Czechia&lang=de',
                 <<<EOT
 scheme: https
 host: www.google.com
 path: /
 arguments:
-	q = OLX
+	q = Czechia
 	lang = de
 EOT
                 ,
             ],
             'json with space' => [
                 true,
-                'https://www.google.com/?q=O+L+X&lang=de',
-                '{"scheme":"https","host":"www.google.com","path":"/","arguments":{"q":"O L X","lang":"de"}}',
+                'https://www.google.com/?q=C+Z+E+C+H+I+A&lang=de',
+                '{"scheme":"https","host":"www.google.com","path":"/","arguments":{"q":"C Z E C H I A","lang":"de"}}',
             ],
         ];
     }

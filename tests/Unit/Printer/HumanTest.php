@@ -2,9 +2,9 @@
 
 namespace Parser\Tests\Unit\Printer;
 
-use Parser\Printer\Json;
+use Parser\Printer\Human;
 
-class JsonTest extends AbstractTestPrinter
+class HumanTest extends AbstractTestPrinter
 {
     /**
      * @param null|string $scheme
@@ -17,10 +17,8 @@ class JsonTest extends AbstractTestPrinter
      */
     public function testPrint(? string $scheme, ? string $host, ? string $path, ? array $arguments, string $expected)
     {
-        $printer = new Json();
+        $printer = new Human();
         $printedValue = $printer->print($this->getUrlEntity($scheme, $host, $path, $arguments));
-
-        $this->assertJson($printedValue);
 
         $this->assertEquals(
             $expected,

@@ -42,16 +42,16 @@ class ParsePartialUrlTest extends AcceptanceTestAbstract
         return [
             'json' => [
                 true,
-                '/www.google.com/?q=OLX&lang=de',
-                '{"path":"/www.google.com/","arguments":{"q":"OLX","lang":"de"}}',
+                '/www.google.com/?q=Czechia&lang=de',
+                '{"path":"/www.google.com/","arguments":{"q":"Czechia","lang":"de"}}',
             ],
             'human' => [
                 false,
-                '/www.google.com/?q=OLX&lang=de',
+                '/www.google.com/?q=Czechia&lang=de',
                 <<<EOT
 path: /www.google.com/
 arguments:
-	q = OLX
+	q = Czechia
 	lang = de
 EOT
                 ,
