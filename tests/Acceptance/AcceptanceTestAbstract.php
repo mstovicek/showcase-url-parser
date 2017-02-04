@@ -3,8 +3,9 @@
 namespace Parser\Tests\Acceptance;
 
 use Parser\Application;
+use PHPUnit\Framework\TestCase;
 
-abstract class AcceptanceTestAbstract extends \PHPUnit_Framework_TestCase
+abstract class AcceptanceTestAbstract extends TestCase
 {
     /** @var Application */
     protected $application;

@@ -8,3 +8,4 @@
 - https://gist.github.com/MattKetmo/3665488
 - https://phpunit.de/manual/current/en/appendixes.annotations.html
 - https://regex101.com/
+- https://github.com/sebastianbergmann/phpunit/issues/1785

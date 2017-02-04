@@ -5,8 +5,9 @@ namespace Parser\Tests\Unit\Parser;
 use Parser\Entity\Argument;
 use Parser\Entity\Url;
 use Parser\Parser\PhpParser;
+use PHPUnit\Framework\TestCase;
 
-class PhpParserTest extends \PHPUnit_Framework_TestCase
+class PhpParserTest extends TestCase
 {
     /**
      * @expectedException \Parser\Exception\InvalidUrlException
