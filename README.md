@@ -54,6 +54,7 @@ $ composer install
 ### Run parser
 ```sh
 $ php application.php parse [options] <url>
+$ php parser.php [options] <url>
 
 Arguments:
     url                URL to be parsed.
@@ -64,10 +65,10 @@ Options:
 ```
 
 ```
-$ php application.php parse "https://www.google.com/?q=Czechia&lang=de"
-$ php application.php parse --json "https://www.google.com/?q=Czechia&lang=de"
-$ php application.php parse --parser=regex "https://www.google.com/?q=Czechia&lang=de"
-$ php application.php parse --json --parser=php "https://www.google.com/?q=Czechia&lang=de"
+$ php parser.php "https://www.google.com/?q=Czechia&lang=de"
+$ php parser.php --json "https://www.google.com/?q=Czechia&lang=de"
+$ php parser.php --parser=regex "https://www.google.com/?q=Czechia&lang=de"
+$ php parser.php --json --parser=php "https://www.google.com/?q=Czechia&lang=de"
 ```
 
 ### Run tests
@@ -91,3 +92,4 @@ $ composer test
 - http://apigen.juzna.cz/doc/sebastianbergmann/phpunit/function-assertJson.html
 - https://www.ietf.org/rfc/rfc3986.txt
 - http://stackoverflow.com/questions/4784243/how-do-i-extract-query-parameters-from-a-url-string-in-php
+- https://symfony.com/doc/current/components/console/single_command_tool.html
