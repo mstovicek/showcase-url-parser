@@ -4,14 +4,30 @@ namespace Parser\Printer;
 
 class PrinterFactory
 {
+    /** @var PrinterInterface */
+    private $humanPrinter;
+
+    /** @var PrinterInterface */
+    private $jsonPrinter;
+
+    /**
+     * @param PrinterInterface $humanPrinter
+     * @param PrinterInterface $jsonPrinter
+     */
+    public function __construct(PrinterInterface $humanPrinter, PrinterInterface $jsonPrinter)
+    {
+        $this->humanPrinter = $humanPrinter;
+        $this->jsonPrinter = $jsonPrinter;
+    }
+
     /**
      * @param bool $isJson
      * @return PrinterInterface
      */
-    public static function getPrinter(bool $isJson): PrinterInterface
+    public function getPrinter(bool $isJson): PrinterInterface
     {
         return $isJson
-            ? new Json()
-            : new Human();
+            ? $this->jsonPrinter
+            : $this->humanPrinter;
     }
 }

@@ -21,14 +21,19 @@ class Parse extends CommandAbstract
     /** @var UrlParserInterface */
     private $urlParser;
 
+    /** @var PrinterFactory */
+    private $printerFactory;
+
     /**
      * @param UrlParserInterface $urlParser
+     * @param PrinterFactory $printerFactory
      */
-    public function __construct(UrlParserInterface $urlParser)
+    public function __construct(UrlParserInterface $urlParser, PrinterFactory $printerFactory)
     {
         parent::__construct(static::NAME);
 
         $this->urlParser = $urlParser;
+        $this->printerFactory = $printerFactory;
     }
 
     /**
@@ -52,9 +57,11 @@ class Parse extends CommandAbstract
         $url = $input->getArgument(static::ARG_URL);
 
         try {
+            $urlEntity = $this->urlParser->parse($url);
+
             $output->write(
-                PrinterFactory::getPrinter($isJson)->print(
-                    $this->urlParser->parse($url)
+                $this->printerFactory->getPrinter($isJson)->print(
+                    $urlEntity
                 )
             );
 

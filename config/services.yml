@@ -3,6 +3,23 @@ services:
         class: Parser\Command\Parse
         arguments:
             - '@parser.php_parser'
+            - '@printer.printer_factory'
 
     parser.php_parser:
         class: Parser\Parser\PhpParser
+        public: false
+
+    printer.printer_factory:
+        class: Parser\Printer\PrinterFactory
+        public: false
+        arguments:
+            - '@printer.human'
+            - '@printer.json'
+
+    printer.human:
+        class: Parser\Printer\Human
+        public: false
+
+    printer.json:
+        class: Parser\Printer\Json
+        public: false
