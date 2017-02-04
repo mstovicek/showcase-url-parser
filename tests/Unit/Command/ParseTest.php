@@ -130,8 +130,12 @@ class ParseTest extends TestCase
             ->getMock();
 
         $inputMock->method('getOption')
-            ->with($this->equalTo(Parse::OPT_JSON))
-            ->willReturn(true);
+            ->will($this->ReturnValueMap(
+                [
+                    [Parse::OPT_JSON, true],
+                    [Parse::OPT_PARSER, 'php'],
+                ]
+            ));
 
         $inputMock->method('getArgument')
             ->with($this->equalTo(Parse::ARG_URL))

@@ -44,6 +44,9 @@ class PrinterFactoryTest extends TestCase
         );
     }
 
+    /**
+     * @return PrinterInterface
+     */
     private function getPrinterMock(): PrinterInterface
     {
         /** @var \PHPUnit_Framework_MockObject_MockBuilder|PrinterInterface $mock */

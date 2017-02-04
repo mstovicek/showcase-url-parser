@@ -17,6 +17,7 @@ class Parse extends CommandAbstract
     const ARG_URL = 'url';
 
     const OPT_JSON = 'json';
+    const OPT_PARSER = 'parser';
 
     /** @var UrlParserInterface */
     private $urlParser;
@@ -46,6 +47,7 @@ class Parse extends CommandAbstract
         $this->addArgument(static::ARG_URL, InputArgument::REQUIRED, 'URL to be parsed.');
 
         $this->addOption(static::OPT_JSON, null, InputOption::VALUE_NONE, 'Whether to output json');
+        $this->addOption(static::OPT_PARSER, null, InputOption::VALUE_OPTIONAL, 'Parser type to be used: php | regex', 'php');
     }
 
     /**
@@ -54,6 +56,8 @@ class Parse extends CommandAbstract
     protected function execute(InputInterface $input, OutputInterface $output): ? int
     {
         $isJson = $input->getOption(static::OPT_JSON);
+        $parserType = $input->getOption(static::OPT_PARSER);
+
         $url = $input->getArgument(static::ARG_URL);
 
         try {
