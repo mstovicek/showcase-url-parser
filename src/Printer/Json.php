@@ -21,7 +21,7 @@ class Json implements PrinterInterface
                     $this->getArgumentsArray(static::TITLE_ARGUMENTS, $url->getArguments())
                 )
             ),
-            JSON_UNESCAPED_SLASHES
+            JSON_UNESCAPED_SLASHES | JSON_FORCE_OBJECT
         );
     }
 
