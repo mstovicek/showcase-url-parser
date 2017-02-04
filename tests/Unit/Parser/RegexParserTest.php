@@ -3,9 +3,9 @@
 namespace Parser\Tests\Unit\Parser;
 
 use Parser\Entity\Url;
-use Parser\Parser\PhpParser;
+use Parser\Parser\RegexParser;
 
-class PhpParserTest extends ParserTestAbstract
+class RegexParserTest extends ParserTestAbstract
 {
     /**
      * @expectedException \Parser\Exception\InvalidUrlException
@@ -13,7 +13,7 @@ class PhpParserTest extends ParserTestAbstract
      */
     public function testParseInvalidUrl()
     {
-        $phpParser = new PhpParser();
+        $phpParser = new RegexParser();
         $phpParser->parse('http://');
     }
 
@@ -25,7 +25,7 @@ class PhpParserTest extends ParserTestAbstract
      */
     public function testParse(string $url, Url $expectedUrlEntity)
     {
-        $phpParser = new PhpParser();
+        $phpParser = new RegexParser();
 
         $this->assertEquals(
             $expectedUrlEntity,

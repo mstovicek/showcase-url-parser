@@ -86,3 +86,5 @@ $ composer test
 - https://regex101.com/
 - https://github.com/sebastianbergmann/phpunit/issues/1785
 - http://apigen.juzna.cz/doc/sebastianbergmann/phpunit/function-assertJson.html
+- https://www.ietf.org/rfc/rfc3986.txt
+- http://stackoverflow.com/questions/4784243/how-do-i-extract-query-parameters-from-a-url-string-in-php
